@@ -26,45 +26,29 @@ public class Player : MonoBehaviour, IPersist
     {
         //player directional input check
         playerDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-
-        SpriteFlipper();
     }
 
     void FixedUpdate()
     {
         //player movement output
-        rb.velocity = new Vector2(playerDirection.x* playerSpeed, playerDirection.y* playerSpeed);
+        rb.velocity = new Vector2(playerDirection.x * playerSpeed, playerDirection.y * playerSpeed);
 
         PlayerSpriteAnimator();
     }
 
-    void SpriteFlipper()
-    {
-        // Flip the sprite based on movement direction
-        if (playerDirection.x < 0)
-        {
-            spriteRenderer.flipX = true; // Flip the sprite when moving left
-            Debug.Log("Flip left");
-        }
-        else if (playerDirection.x > 0)
-        {
-            spriteRenderer.flipX = false; // Unflip the sprite when moving right
-            Debug.Log("Flip Right");
-
-        }
-    }
 
     void PlayerSpriteAnimator()
     {
-        rb.velocity = new Vector2(playerDirection.x * playerSpeed, playerDirection.y * playerSpeed);
-            if (rb.velocity.sqrMagnitude > 0)
-            {
-                GetComponent<Animator>().Play("Player_walk");
-            }
-            else
-            {
-                GetComponent<Animator>().Play("Player_Idle");
-            }
+        GetComponent<Animator>().SetFloat("MoveX", rb.velocity.x);
+        GetComponent<Animator>().SetFloat("MoveY", rb.velocity.y);
+
+        if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
+        {
+            GetComponent<Animator>().SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
+            GetComponent<Animator>().SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
+
+        }
+
     }
 
     public void Save()
