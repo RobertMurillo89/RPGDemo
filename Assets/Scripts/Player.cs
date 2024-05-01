@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IPersist
+public class Player : MonoBehaviour//, IPersist
 {
     [Header("----- Player Stats -----")]
     public float playerSpeed;
@@ -17,8 +17,21 @@ public class Player : MonoBehaviour, IPersist
     //Player animations
     Animator animator;
 
+    public static Player instance;
+
+    public string areaTransitionName;
+
     private void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -51,14 +64,14 @@ public class Player : MonoBehaviour, IPersist
 
     }
 
-    public void Save()
-    {
-        throw new System.NotImplementedException();
-    }
+    //public void Save()
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 
-    public void Load()
-    {
-        throw new System.NotImplementedException();
-    }
+    //public void Load()
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 }
 
