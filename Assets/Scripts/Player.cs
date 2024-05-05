@@ -20,6 +20,8 @@ public class Player : MonoBehaviour//, IPersist
     public static Player instance;
 
     public string areaTransitionName;
+    private Vector3 bottomLeftLimit;
+    private Vector3 topRightLimit;
 
     private void Start()
     {
@@ -39,6 +41,8 @@ public class Player : MonoBehaviour//, IPersist
     {
         //player directional input check
         playerDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.x, topRightLimit.x), Mathf.Clamp(transform.position.y, bottomLeftLimit.y, topRightLimit.y), transform.position.z);
+
     }
 
     void FixedUpdate()
@@ -47,6 +51,7 @@ public class Player : MonoBehaviour//, IPersist
         rb.velocity = new Vector2(playerDirection.x * playerSpeed, playerDirection.y * playerSpeed);
 
         PlayerSpriteAnimator();
+
     }
 
 
@@ -62,6 +67,12 @@ public class Player : MonoBehaviour//, IPersist
 
         }
 
+    }
+
+    public void SetBounds(Vector3 botLeft, Vector3 topRight)
+    {
+        bottomLeftLimit = botLeft + new Vector3(.5f, .75f, 0f);
+        topRightLimit = topRight + new Vector3(-.5f, -.75f, 0f);
     }
 
     //public void Save()

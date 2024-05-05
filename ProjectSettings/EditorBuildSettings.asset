@@ -11,5 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test2.unity
     guid: 638f37935a7b18847922bc6b7191f403
+  - enabled: 1
+    path: Assets/Scenes/CountrySide.unity
+    guid: 9c6542487b88c7444801d3cfe9bdc56a
+  - enabled: 1
+    path: Assets/Scenes/Town.unity
+    guid: 697fd5042d3e71b468205d4764224c0c
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 97d8372d9c972b3479dddd9b258e4b27, type: 2}
