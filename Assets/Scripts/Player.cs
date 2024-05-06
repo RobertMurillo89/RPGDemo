@@ -31,7 +31,10 @@ public class Player : MonoBehaviour//, IPersist
         }
         else
         {
-            Destroy(gameObject);
+            if (instance != this)
+            {
+                Destroy(gameObject);
+            }
         }
         DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody2D>();
