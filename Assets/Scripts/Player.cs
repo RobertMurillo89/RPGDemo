@@ -23,6 +23,8 @@ public class Player : MonoBehaviour//, IPersist
     private Vector3 bottomLeftLimit;
     private Vector3 topRightLimit;
 
+    public bool canMove = true;
+
     private void Start()
     {
         if (instance == null)
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour//, IPersist
 
     private void Update()
     {
+
         //player directional input check
         playerDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.x, topRightLimit.x), Mathf.Clamp(transform.position.y, bottomLeftLimit.y, topRightLimit.y), transform.position.z);
@@ -50,10 +53,19 @@ public class Player : MonoBehaviour//, IPersist
 
     void FixedUpdate()
     {
-        //player movement output
-        rb.velocity = new Vector2(playerDirection.x * playerSpeed, playerDirection.y * playerSpeed);
-
         PlayerSpriteAnimator();
+
+        if (canMove)
+        {
+            //player movement output
+            rb.velocity = new Vector2(playerDirection.x * playerSpeed, playerDirection.y * playerSpeed);
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
+
+
 
     }
 
@@ -65,9 +77,11 @@ public class Player : MonoBehaviour//, IPersist
 
         if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
         {
-            GetComponent<Animator>().SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
-            GetComponent<Animator>().SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
-
+            if (canMove)
+            {
+                GetComponent<Animator>().SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
+                GetComponent<Animator>().SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
+            }
         }
 
     }
