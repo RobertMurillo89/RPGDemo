@@ -8,6 +8,8 @@ public class DialogueActivator : MonoBehaviour
 
     private bool canActivate;
 
+    public bool isPerson = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class DialogueActivator : MonoBehaviour
     {
         if(canActivate && Input.GetButtonDown("Fire1") && !DialogueManager.instance.dialogueBox.activeInHierarchy)
         {
-            DialogueManager.instance.ShowDialogue(lines);
+            DialogueManager.instance.ShowDialogue(lines, isPerson);
         }
     }
 

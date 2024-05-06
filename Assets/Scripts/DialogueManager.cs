@@ -40,7 +40,10 @@ public class DialogueManager : MonoBehaviour
                         Player.instance.canMove = true;
                     }
                     else
+                    {
+                        CheckIfName();
                         dialogueText.text = dialogueLines[currentLine];
+                    }
                 }
                 else
                     justStarted = false;
@@ -49,18 +52,31 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void ShowDialogue(string[] newLines)
+    public void ShowDialogue(string[] newLines, bool isPerson)
     {
         dialogueLines = newLines;
 
         currentLine = 0;
 
-        dialogueText.text = dialogueLines[0];
+        CheckIfName();
+
+        dialogueText.text = dialogueLines[currentLine];
         dialogueBox.SetActive (true);
 
         justStarted = true;
 
+        nameBox.SetActive(isPerson);
+
         Player.instance.canMove = false;
+    }
+
+    public void CheckIfName()
+    {
+        if (dialogueLines[currentLine].StartsWith("n-"))
+        {
+            nameText.text = dialogueLines[currentLine].Replace("n-", "");
+            currentLine++;
+        }
     }
 
 }
