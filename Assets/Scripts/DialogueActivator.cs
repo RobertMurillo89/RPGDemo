@@ -5,6 +5,7 @@ using UnityEngine;
 public class DialogueActivator : MonoBehaviour
 {
     public string[] lines;
+    public string name;
 
     private bool canActivate;
 
