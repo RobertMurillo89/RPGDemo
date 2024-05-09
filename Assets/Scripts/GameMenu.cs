@@ -16,6 +16,15 @@ public class GameMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Fire2"))
+        {
+            if (theMenu.activeInHierarchy)
+            {
+                theMenu.SetActive(false);
+            }else
+            {
+                theMenu.SetActive(true);
+            }
+        }
     }
 }
