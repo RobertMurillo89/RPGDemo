@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public CharStats[] playerStats;
 
+    public bool gameMenuOpen, dialogueActive, fadingBetweenAreas;
+
+
 
     void Start()
     {
@@ -17,6 +20,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        if(gameMenuOpen || dialogueActive || fadingBetweenAreas)
+            Player.instance.canMove = false;
+        else
+            Player.instance.canMove = true;
     }
 }
