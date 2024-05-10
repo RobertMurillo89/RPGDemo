@@ -903,7 +903,7 @@ GameObject:
   - component: {fileID: 5065477066211947976}
   - component: {fileID: 83832352314041146}
   m_Layer: 5
-  m_Name: CharInfo
+  m_Name: Char Info 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1860,7 +1860,7 @@ GameObject:
   - component: {fileID: 6502304146352580510}
   - component: {fileID: 6782343741072380459}
   m_Layer: 5
-  m_Name: CharInfo (1)
+  m_Name: Char Info 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2648,7 +2648,7 @@ GameObject:
   - component: {fileID: 8571335992080814894}
   - component: {fileID: 4079296923767572864}
   m_Layer: 5
-  m_Name: CharInfo (2)
+  m_Name: Char Info 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4582,6 +4582,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theMenu: {fileID: 4412843805759365617}
+  nameText:
+  - {fileID: 6504544715007017498}
+  - {fileID: 914823952749972467}
+  - {fileID: 8249311235199156331}
+  hpText:
+  - {fileID: 5252031069117814008}
+  - {fileID: 3616395704019615966}
+  - {fileID: 90531424954216879}
+  mpText:
+  - {fileID: 2156081881872438375}
+  - {fileID: 3630170465850892460}
+  - {fileID: 784046330373859799}
+  lvlText:
+  - {fileID: 3547273336795575910}
+  - {fileID: 3594978263786421885}
+  - {fileID: 1610615183367233153}
+  expText:
+  - {fileID: 8258782162779544059}
+  - {fileID: 4908762823175718415}
+  - {fileID: 1572395773442527692}
+  expSlider:
+  - {fileID: 2997058311919574812}
+  - {fileID: 285949415860131478}
+  - {fileID: 7885864204997465115}
+  charImage:
+  - {fileID: 2405344135230621128}
+  - {fileID: 8693063100632458779}
+  - {fileID: 5340575354011515863}
+  charStatHolder:
+  - {fileID: 1256056422195048853}
+  - {fileID: 2478968270141697070}
+  - {fileID: 4110224420106665449}
 --- !u!223 &1807810822851646455
 Canvas:
   m_ObjectHideFlags: 0
