@@ -51,6 +51,9 @@ MonoBehaviour:
   - {fileID: 7934144301488900294}
   - {fileID: 2065429217928484882}
   - {fileID: 3109829991981404313}
+  gameMenuOpen: 0
+  dialogueActive: 0
+  fadingBetweenAreas: 0
 --- !u!1 &6629104950545447499
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +164,7 @@ MonoBehaviour:
   curLevel: 1
   currentExp: 250
   expToNextLevel: 
-  maxLevel: 10
+  maxLevel: 100
   baseEXP: 1000
   currentHp: 0
   maxHP: 100
