@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
 
     public bool gameMenuOpen, dialogueActive, fadingBetweenAreas;
 
-
+    public string[] itemsHeld;
+    public int[] numberOfItems;
+    public Item[] referenceItems;
 
     void Start()
     {
@@ -24,5 +26,19 @@ public class GameManager : MonoBehaviour
             Player.instance.canMove = false;
         else
             Player.instance.canMove = true;
+    }
+
+    public Item GetItemDetails(string itemToGrab)
+    {
+        for(int i = 0; i < referenceItems.Length; i++)
+        {
+            if (referenceItems[i].itemName == itemToGrab)
+            {
+                return referenceItems[i];
+            }
+        }
+
+
+        return null;
     }
 }
