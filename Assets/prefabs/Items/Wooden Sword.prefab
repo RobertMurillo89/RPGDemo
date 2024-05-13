@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7977088092181215693}
   - component: {fileID: 4970673247357311232}
   - component: {fileID: 6865555856271686489}
+  - component: {fileID: 8967323411617317642}
+  - component: {fileID: 6323796706979027335}
   m_Layer: 0
   m_Name: Wooden Sword
   m_TagString: Untagged
@@ -111,3 +113,50 @@ MonoBehaviour:
   affectDef: 0
   weaponStrength: 5
   armorStrength: 0
+--- !u!58 &8967323411617317642
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120847295143930092}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.85
+--- !u!114 &6323796706979027335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120847295143930092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1e241e1f4633e4ebc3024eb50f2926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
