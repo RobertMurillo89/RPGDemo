@@ -15,6 +15,8 @@ public class Shop : MonoBehaviour
 
     public TMP_Text goldText;
 
+    public string[] itemsForSale;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class Shop : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.L) && !shopMenu.activeInHierarchy)
         {
+
             OpenShop();
         }
     }
