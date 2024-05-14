@@ -79,7 +79,7 @@ public class GameMenu : MonoBehaviour
             }
         }
 
-        goldText.text = GameManager.instance.currentGold.ToString() + "G";
+        goldText.text = GameManager.instance.currentGold.ToString() + " G";
     }
 
     public void ToggleWindow(int windowNumber)
