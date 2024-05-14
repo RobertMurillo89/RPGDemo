@@ -42955,7 +42955,7 @@ MonoBehaviour:
   shopMenu: {fileID: 1353115007498494022}
   buyMenu: {fileID: 1955152828803029528}
   sellMenu: {fileID: 7814833915835020876}
-  goldText: {fileID: 1982924756125729635}
+  goldText: {fileID: 8230868903928833884}
   itemsForSale:
   - 
   - 
@@ -49372,7 +49372,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6376772726768553792}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2112755228665292391}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: BuyItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7798092586802401363
 GameObject:
   m_ObjectHideFlags: 0
@@ -51426,7 +51438,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2681407045458742051}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2112755228665292391}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: SellItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8067417068414213401
 GameObject:
   m_ObjectHideFlags: 0
