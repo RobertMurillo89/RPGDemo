@@ -110,6 +110,9 @@ MonoBehaviour:
   - ...Ohh.. That does'nt sound good...
   name: 
   isPerson: 1
+  shouldActivateQuest: 1
+  questToMark: Quest Test
+  markComplete: 1
 --- !u!61 &8962431071419854304
 BoxCollider2D:
   m_ObjectHideFlags: 0

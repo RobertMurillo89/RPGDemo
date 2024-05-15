@@ -206,4 +206,11 @@ public class GameMenu : MonoBehaviour
         activeItem.Use(selectChar);
         CloseItemCharChoice();
     }
+
+    //Save System Using Player Prefs
+    public void SaveGame()
+    {
+        GameManager.instance.SaveData();
+        QuestManager.instance.SaveQuestData();
+    }
 }
