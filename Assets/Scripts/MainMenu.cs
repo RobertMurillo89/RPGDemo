@@ -9,6 +9,8 @@ public class MainMenu : MonoBehaviour
 
     public GameObject continueButton;
 
+    public string loadGameScene;
+
     void Start()
     {
         if(PlayerPrefs.HasKey("Current_Scene"))
@@ -25,7 +27,7 @@ public class MainMenu : MonoBehaviour
 
     public void Continue() 
     {
-
+        SceneManager.LoadScene(loadGameScene);
     }
 
     public void NewGame()
