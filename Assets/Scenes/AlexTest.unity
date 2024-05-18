@@ -468,9 +468,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 449828088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a0127693b4c2f648a8eac207f7ef152, type: 3}
+  m_Script: {fileID: 11500000, guid: 71cea8f58d69dcf4a9b5bda55beef45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  hand1anim: {fileID: 0}
+  hand2anim: {fileID: 0}
 --- !u!1001 &507786652
 PrefabInstance:
   m_ObjectHideFlags: 0
