@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class aMonsterTester : MonoBehaviour
 {
+    [SerializeField] Animator anim;
+    [SerializeField] Animator hand1anim;
+    [SerializeField] Animator hand2anim;
+
     // Start is called before the first frame update
     void Start()
     {
