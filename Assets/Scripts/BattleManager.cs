@@ -24,6 +24,7 @@ public class BattleManager : MonoBehaviour
     public GameObject uiButtonHolder;
 
     public BattleMove[] moveList;
+    public GameObject enemyAttackEffect;
 
     void Start()
     {
@@ -211,7 +212,10 @@ public class BattleManager : MonoBehaviour
                 Instantiate(moveList[i].theEffect, activeBattlers[selectedTarget].transform.position, activeBattlers[selectedTarget].transform.rotation);
                 movePower = moveList[i].movePower;
             }
+
         }
+        Instantiate(enemyAttackEffect, activeBattlers[currentTurn].transform.position, activeBattlers[currentTurn].transform.rotation);
+
         DealDamage(selectedTarget, movePower);
     }
     public void DealDamage(int target, int movePower)
