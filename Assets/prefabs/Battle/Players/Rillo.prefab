@@ -98,7 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 1
-  movesAvailable: []
+  movesAvailable:
+  - Ice
+  - Fire
   charName: Rillo
   currentHP: 0
   maxHP: 0
