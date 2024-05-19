@@ -255,14 +255,14 @@ public class BattleManager : MonoBehaviour
 
                     playerName[i].gameObject.SetActive(true);
                     playerName[i].text = playerData.charName;
-                    playerHP[i].text = playerData.currentHP + "/" + playerData.maxHP;
-                    playerMP[i].text = playerData.currentMP + "/" + playerData.maxMP;
+                    playerHP[i].text = Mathf.Clamp(playerData.currentHP, 0, int.MaxValue) + "/" + playerData.maxHP;
+                    playerMP[i].text = Mathf.Clamp(playerData.currentMP, 0, int.MaxValue) + "/" + playerData.maxMP;
 
                 }else
-                    playerName[i].gameObject.SetActive(true);
+                    playerName[i].gameObject.SetActive(false);
 
             }else
-                playerName[i].gameObject.SetActive(true);
+                playerName[i].gameObject.SetActive(false);
         }
     }
 
