@@ -185,6 +185,16 @@ public class BattleManager : MonoBehaviour
             battleScene.SetActive(false);
             GameManager.instance.battleActive = false;
             battleActive = false;
+        }else
+        {
+            while (activeBattlers[currentTurn].currentHP == 0)
+            {
+                currentTurn++;
+                if(currentTurn >= activeBattlers.Count)
+                {
+                    currentTurn = 0;
+                }
+            }
         }
     }
 
@@ -213,7 +223,7 @@ public class BattleManager : MonoBehaviour
 
         int selectAttack = Random.Range(0, activeBattlers[currentTurn].movesAvailable.Length);
         int movePower = 0;
-        for(int i = 0; i < moveList.Length; i++)
+        for(int i = 0; i < moveList.Length - 1; i++)
         {
             if (moveList[i].moveName == activeBattlers[currentTurn].movesAvailable[selectAttack])
             {
@@ -234,7 +244,7 @@ public class BattleManager : MonoBehaviour
         float damageCalc = (atkPwr / defPwr) * movePower * Random.Range(.9f, 1.1f);
         int damageToGive = Mathf.RoundToInt(damageCalc);
 
-        Debug.Log(activeBattlers[currentTurn].charName + " is dealing" + damageCalc + " (" + damageToGive + " ) damage to " + activeBattlers[target].charName);
+        //Debug.Log(activeBattlers[currentTurn].charName + " is dealing" + damageCalc + " (" + damageToGive + " ) damage to " + activeBattlers[target].charName);
 
         activeBattlers[target].currentHP -= damageToGive;
 
@@ -264,6 +274,24 @@ public class BattleManager : MonoBehaviour
             }else
                 playerName[i].gameObject.SetActive(false);
         }
+    }
+
+    public void PlayerAttack(string moveName/*, int selectedTarget*/)
+    {
+        int selectedTarget = 2;
+        int movePower = 0;
+        for (int i = 0; i < moveList.Length - 1; i++)
+        {
+            if (moveList[i].moveName == moveName)
+            {
+                Instantiate(moveList[i].theEffect, activeBattlers[selectedTarget].transform.position, activeBattlers[selectedTarget].transform.rotation);
+                movePower = moveList[i].movePower;
+            }
+        }
+        Instantiate(enemyAttackEffect, activeBattlers[currentTurn].transform.position, activeBattlers[currentTurn].transform.rotation);
+        DealDamage(selectedTarget, movePower);
+        uiButtonHolder.SetActive(false);
+        NextTurn();
     }
 
 }
