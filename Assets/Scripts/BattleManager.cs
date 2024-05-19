@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager instance;
@@ -27,6 +28,8 @@ public class BattleManager : MonoBehaviour
     public GameObject enemyAttackEffect;
 
     public DamageNumber damageNumber;
+
+    public TMP_Text[] playerName, playerHP, playerMP;
 
     void Start()
     {
@@ -125,6 +128,8 @@ public class BattleManager : MonoBehaviour
             turnWaiting = true;
             currentTurn = Random.RandomRange(0,activeBattlers.Count);
             //set above int to 0 to have it start at player 1 each time
+
+            UpdateUIStats();
         }
     }
 
@@ -138,6 +143,7 @@ public class BattleManager : MonoBehaviour
 
         turnWaiting = true;
         UpdateBattle();
+        UpdateUIStats();
     }
 
     public void UpdateBattle()
@@ -233,5 +239,31 @@ public class BattleManager : MonoBehaviour
         activeBattlers[target].currentHP -= damageToGive;
 
         Instantiate(damageNumber, activeBattlers[target].transform.position, activeBattlers[target].transform.rotation).SetDamage(damageToGive);
+
+        UpdateUIStats();
     }
+
+    public void UpdateUIStats()
+    {
+        for (int i = 0; i < playerName.Length; i++)
+        {
+            if(activeBattlers.Count > i)
+            {
+                if (activeBattlers[i].isPlayer)
+                {
+                    BattleChar playerData = activeBattlers[i];
+
+                    playerName[i].gameObject.SetActive(true);
+                    playerName[i].text = playerData.charName;
+                    playerHP[i].text = playerData.currentHP + "/" + playerData.maxHP;
+                    playerMP[i].text = playerData.currentMP + "/" + playerData.maxMP;
+
+                }else
+                    playerName[i].gameObject.SetActive(true);
+
+            }else
+                playerName[i].gameObject.SetActive(true);
+        }
+    }
+
 }
