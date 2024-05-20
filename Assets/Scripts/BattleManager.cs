@@ -38,6 +38,8 @@ public class BattleManager : MonoBehaviour
 
     public BattleMagicSelect[] magicButtons;
 
+    public BattleNotification battleNotice;
+
     void Start()
     {
         instance = this;
