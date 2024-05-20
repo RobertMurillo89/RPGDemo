@@ -40,6 +40,8 @@ public class BattleManager : MonoBehaviour
 
     public BattleNotification battleNotice;
 
+    public int chanceToFlee = 50;
+
     void Start()
     {
         instance = this;
@@ -360,4 +362,19 @@ public class BattleManager : MonoBehaviour
 
     }
 
+    public void Flee()
+    {
+        int fleeSuccess = Random.Range(0, 100);
+        if(fleeSuccess < chanceToFlee)
+        {
+            //end the battle
+            battleActive = false;
+            battleScene.SetActive(false);
+        }else
+        {
+            NextTurn();
+            battleNotice.theText.text = "Couln't Escape!";
+            battleNotice.Activate();
+        }
+    }
 }
