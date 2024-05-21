@@ -35,6 +35,10 @@ public class Item : MonoBehaviour
 
     public void Use(int charToUseOn)
     {
+        //if (BattleManager.instance.battleScene.activeInHierarchy)
+        //{
+            //BattleChar selectedChar = BattleManager.instance.activeBattlers[charToUseOn];
+        //}
         CharStats selectedChar = GameManager.instance.playerStats[charToUseOn];
 
         if (isItem)

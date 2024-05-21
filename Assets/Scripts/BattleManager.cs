@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager instance;
@@ -41,6 +42,13 @@ public class BattleManager : MonoBehaviour
     public BattleNotification battleNotice;
 
     public int chanceToFlee = 50;
+
+    public GameObject itemWindow, itemCharChoiceMenu;
+    public TMP_Text[] itemCharChoiceNames;
+    public Item activeItem;
+    public ItemButton[] itemButtons;
+    public TMP_Text itemName, itemDescription, useButtonText;
+
 
     void Start()
     {
@@ -86,6 +94,7 @@ public class BattleManager : MonoBehaviour
         {
             battleActive = true;
 
+            //this line makes the player not move while in combat
             GameManager.instance.battleActive = true;
 
 
@@ -94,10 +103,12 @@ public class BattleManager : MonoBehaviour
 
             AudioManager.instance.PlayBGM(0);
 
+            
             for(int i = 0; i < playerPositions.Length; i++)
             {
                 if (GameManager.instance.playerStats[i].gameObject.activeInHierarchy) 
                 {
+                   
                     for(int j = 0; j < playerPrefabs.Length; j++)
                     {
                         if (playerPrefabs[j].charName == GameManager.instance.playerStats[i].charName)
@@ -171,11 +182,17 @@ public class BattleManager : MonoBehaviour
             if (activeBattlers[i].currentHP == 0)
             {
                 //Handle dead battler
+                if (activeBattlers[i].isPlayer)
+                {
+                    activeBattlers[i].theSprite.sprite = activeBattlers[i].deadSprite;
+
+                }
             }else
             {
                 if (activeBattlers[i].isPlayer)
                 {
                     allPlayersDead = false;
+                    activeBattlers[i].theSprite.sprite = activeBattlers[i].aliveSprite;
                 }
                 else
                 {
@@ -370,11 +387,80 @@ public class BattleManager : MonoBehaviour
             //end the battle
             battleActive = false;
             battleScene.SetActive(false);
-        }else
+            GameManager.instance.battleActive = false;
+        }
+        else
         {
             NextTurn();
             battleNotice.theText.text = "Couln't Escape!";
             battleNotice.Activate();
         }
+    }
+
+    public void OpenItemMenu()
+    {
+        itemWindow.SetActive(true);
+    }
+    public void CloseItemMenu()
+    {
+        itemWindow.SetActive(false);
+
+    }
+    public void ShowItems()
+    {
+        GameManager.instance.SortItems();
+
+        for (int i = 0; i < itemButtons.Length; i++)
+        {
+            itemButtons[i].buttonValue = i;
+
+            if (GameManager.instance.itemsHeld[i] != "")
+            {
+                itemButtons[i].buttonImage.gameObject.SetActive(true);
+                itemButtons[i].buttonImage.sprite = GameManager.instance.GetItemDetails(GameManager.instance.itemsHeld[i]).itemSprite;
+                itemButtons[i].amountText.text = GameManager.instance.numberOfItems[i].ToString();
+            }
+            else
+            {
+                itemButtons[i].buttonImage.gameObject.SetActive(false);
+                itemButtons[i].amountText.text = "";
+            }
+        }
+    }
+    public void OpenItemCharChoice()
+    {
+        itemCharChoiceMenu.SetActive(true);
+        for (int i = 0; i < itemCharChoiceNames.Length; i++)
+        {
+            itemCharChoiceNames[i].text = GameManager.instance.playerStats[i].charName;
+            itemCharChoiceNames[i].transform.parent.gameObject.SetActive(GameManager.instance.playerStats[i].gameObject.activeInHierarchy);
+        }
+    }
+
+    public void UseItem(int selectChar)
+    {
+        activeItem.Use(selectChar);
+        UpdateUIStats();
+        CloseItemCharChoice();
+        CloseItemMenu();
+    }
+    public void CloseItemCharChoice()
+    {
+        itemCharChoiceMenu.SetActive(false);
+
+    }
+
+    public void SelectItem(Item newItem)
+    {
+        activeItem = newItem;
+
+        if (activeItem.isItem)
+            useButtonText.text = "Use";
+
+        if (activeItem.isWeapon || activeItem.isArmor)
+            useButtonText.text = "Equip";
+
+        itemName.text = activeItem.itemName;
+        itemDescription.text = activeItem.description;
     }
 }
