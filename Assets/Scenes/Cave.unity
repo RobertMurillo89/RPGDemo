@@ -2141,6 +2141,7 @@ MonoBehaviour:
   itemName: {fileID: 1174261153}
   itemDescription: {fileID: 1641183259}
   useButtonText: {fileID: 347503746}
+  gameOverScene: GameOver
 --- !u!4 &159513888
 Transform:
   m_ObjectHideFlags: 0

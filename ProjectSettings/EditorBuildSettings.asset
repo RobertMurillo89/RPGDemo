@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cave.unity
     guid: 2fb0aef7303399a43b7c9e4fd257f3f5
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 3309f30db027a584c8af7068a654cf54
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 97d8372d9c972b3479dddd9b258e4b27, type: 2}

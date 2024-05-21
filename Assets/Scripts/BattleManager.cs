@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using static System.Net.Mime.MediaTypeNames;
 public class BattleManager : MonoBehaviour
 {
@@ -50,6 +51,8 @@ public class BattleManager : MonoBehaviour
     public TMP_Text itemName, itemDescription, useButtonText;
 
 
+    public string gameOverScene;
+
     void Start()
     {
         instance = this;
@@ -61,7 +64,7 @@ public class BattleManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.T))
         {
-            BattleStart(new string[] { "EyeBall"});
+            BattleStart(new string[] { "EyeBall", "Spider", "Skeleton"});
         }
 
         if (battleActive)
@@ -215,7 +218,7 @@ public class BattleManager : MonoBehaviour
             }else
             {
                 //end battle in failure
-
+                StartCoroutine(GameOverCo());
 
             }
             /*battleScene.SetActive(false);
@@ -512,5 +515,14 @@ public class BattleManager : MonoBehaviour
         GameManager.instance.battleActive = false;
 
         AudioManager.instance.PlayBGM(FindObjectOfType<CameraController>().musicToPlay);
+    }
+
+    public IEnumerator GameOverCo()
+    {
+        battleActive = false;
+        UIFade.instance.FadeToBlack();
+        yield return new WaitForSeconds(1.5f);
+
+        SceneManager.LoadScene(gameOverScene);
     }
 }
