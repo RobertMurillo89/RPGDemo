@@ -43,6 +43,7 @@ public class BattleManager : MonoBehaviour
     public BattleNotification battleNotice;
 
     public int chanceToFlee = 50;
+    bool fleeing;
 
     public GameObject itemWindow, itemCharChoiceMenu;
     public TMP_Text[] itemCharChoiceNames;
@@ -52,6 +53,8 @@ public class BattleManager : MonoBehaviour
 
 
     public string gameOverScene;
+    public int rewardXP;
+    public string[] rewardItems;
 
     void Start()
     {
@@ -64,7 +67,7 @@ public class BattleManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.T))
         {
-            BattleStart(new string[] { "EyeBall", "Spider", "Skeleton"});
+            BattleStart(new string[] { "EyeBall"/*, "Spider", "Skeleton"*/});
         }
 
         if (battleActive)
@@ -399,6 +402,7 @@ public class BattleManager : MonoBehaviour
             //battleActive = false;
             //battleScene.SetActive(false);
             //GameManager.instance.battleActive = false;
+            fleeing = true;
             StartCoroutine(EndBattleCo());
         }
         else
@@ -512,7 +516,15 @@ public class BattleManager : MonoBehaviour
         battleScene.SetActive(false);
         activeBattlers.Clear();
         currentTurn = 0;
-        GameManager.instance.battleActive = false;
+        if (fleeing)
+        {
+            GameManager.instance.battleActive = false;
+            fleeing = false;
+        }
+        else
+        {
+            BattleReward.Instance.OpenRewardScreen(rewardXP, rewardItems);
+        }
 
         AudioManager.instance.PlayBGM(FindObjectOfType<CameraController>().musicToPlay);
     }
