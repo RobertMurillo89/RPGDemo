@@ -2091,6 +2091,7 @@ MonoBehaviour:
   - {fileID: 1329454940}
   battleNotice: {fileID: 521613613}
   chanceToFlee: 50
+  cannotFlee: 0
   itemWindow: {fileID: 1335675834}
   itemCharChoiceMenu: {fileID: 1571992933}
   itemCharChoiceNames:
@@ -3721,6 +3722,9 @@ MonoBehaviour:
   activateOnExit: 0
   timeBetweenBattles: 10
   deactivateAfterStarting: 0
+  cannotFlee: 1
+  shouldCompleteQuest: 0
+  questToComplete: Fight the Demon
 --- !u!61 &312114357
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -56389,6 +56393,9 @@ MonoBehaviour:
   activateOnExit: 0
   timeBetweenBattles: 10
   deactivateAfterStarting: 0
+  cannotFlee: 0
+  shouldCompleteQuest: 0
+  questToComplete: 
 --- !u!1 &2120678657
 GameObject:
   m_ObjectHideFlags: 0
