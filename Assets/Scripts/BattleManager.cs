@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static System.Net.Mime.MediaTypeNames;
+using Unity.VisualScripting;
+using System.Net;
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager instance;
@@ -44,6 +46,7 @@ public class BattleManager : MonoBehaviour
 
     public int chanceToFlee = 50;
     bool fleeing;
+    public bool cannotFlee;
 
     public GameObject itemWindow, itemCharChoiceMenu;
     public TMP_Text[] itemCharChoiceNames;
@@ -67,7 +70,7 @@ public class BattleManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.T))
         {
-            BattleStart(new string[] { "EyeBall"/*, "Spider", "Skeleton"*/});
+            BattleStart(new string[] { "EyeBall"/*, "Spider", "Skeleton"*/}, false);
         }
 
         if (battleActive)
@@ -94,10 +97,11 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void BattleStart(string[] enemiesToSpawn)
+    public void BattleStart(string[] enemiesToSpawn, bool setCannotFlee)
     {
         if(!battleActive)
         {
+            cannotFlee = setCannotFlee;
             battleActive = true;
 
             //this line makes the player not move while in combat
@@ -395,22 +399,31 @@ public class BattleManager : MonoBehaviour
 
     public void Flee()
     {
-        int fleeSuccess = Random.Range(0, 100);
-        if(fleeSuccess < chanceToFlee)
+        if(cannotFlee)
         {
-            //end the battle
-            //battleActive = false;
-            //battleScene.SetActive(false);
-            //GameManager.instance.battleActive = false;
-            fleeing = true;
-            StartCoroutine(EndBattleCo());
-        }
-        else
-        {
-            NextTurn();
-            battleNotice.theText.text = "Couln't Escape!";
+            battleNotice.theText.text = "Cannot flee this battle!";
             battleNotice.Activate();
+            
+        }else
+        {
+            int fleeSuccess = Random.Range(0, 100);
+            if (fleeSuccess < chanceToFlee)
+            {
+                //end the battle
+                //battleActive = false;
+                //battleScene.SetActive(false);
+                //GameManager.instance.battleActive = false;
+                fleeing = true;
+                StartCoroutine(EndBattleCo());
+            }
+            else
+            {
+                NextTurn();
+                battleNotice.theText.text = "Couln't Escape!";
+                battleNotice.Activate();
+            }
         }
+        
     }
 
     public void OpenItemMenu()

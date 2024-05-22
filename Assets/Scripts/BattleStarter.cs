@@ -16,6 +16,8 @@ public class BattleStarter : MonoBehaviour
 
     public bool deactivateAfterStarting;
 
+    public bool cannotFlee;
+
     void Start()
     {
         betweenBattleCounter = Random.Range(timeBetweenBattles * .5f, timeBetweenBattles * 1.5f);
@@ -79,7 +81,7 @@ public class BattleStarter : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        BattleManager.instance.BattleStart(potentialBattles[selectedBattle].enemies);
+        BattleManager.instance.BattleStart(potentialBattles[selectedBattle].enemies, cannotFlee);
         UIFade.instance.FadeFromBlack();
 
         if (deactivateAfterStarting)
