@@ -36,6 +36,8 @@ public class GameMenu : MonoBehaviour
 
     public static GameMenu instance;
 
+    public GameObject UIInstruction;
+
     void Start()
     {
         instance = this;
@@ -44,8 +46,9 @@ public class GameMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Cancel"))
         {
+            ToggleUIInstructions();
             if (theMenu.activeInHierarchy)
             {
                 CloseMenu();
@@ -233,5 +236,16 @@ public class GameMenu : MonoBehaviour
         Destroy(Player.instance.gameObject);
         Destroy(AudioManager.instance.gameObject);
         Destroy(gameObject);
+    }
+
+    public void ToggleUIInstructions()
+    {
+        if (UIInstruction.activeInHierarchy)
+        {
+            UIInstruction.SetActive(false);
+        }else
+        {
+            UIInstruction.SetActive(true);
+        }
     }
 }

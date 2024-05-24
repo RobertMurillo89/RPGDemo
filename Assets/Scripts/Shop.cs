@@ -45,7 +45,7 @@ public class Shop : MonoBehaviour
         shopMenu.SetActive(true);
         OpenBuyMenu();
         GameManager.instance.shopActive = true;
-
+        DialogueManager.instance.DeactivateUIInstructions();
         goldText.text = GameManager.instance.currentGold.ToString() + " G";
     }
     public void CloseShop()

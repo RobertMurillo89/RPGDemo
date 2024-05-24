@@ -1235,7 +1235,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Productivia
+  m_text: RPG DEMO
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7e9e66a82d4fb6548a3bcb582db82947, type: 2}
   m_sharedMaterial: {fileID: 6012376623395922069, guid: 7e9e66a82d4fb6548a3bcb582db82947, type: 2}

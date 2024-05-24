@@ -17,7 +17,7 @@ public class ShopKeeper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canOpen && Input.GetButtonDown("Fire1") && Player.instance.canMove && !Shop.instance.shopMenu.activeInHierarchy)
+        if(canOpen && Input.GetKeyDown(KeyCode.E) && Player.instance.canMove && !Shop.instance.shopMenu.activeInHierarchy)
         {
 
             Shop.instance.itemsForSale = itemsForSale;
@@ -30,7 +30,10 @@ public class ShopKeeper : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
+        {
+            DialogueManager.instance.ActivateUIInstruction();
             canOpen = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

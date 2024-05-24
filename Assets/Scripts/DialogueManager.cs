@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,7 +33,7 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
 
-        if (dialogueBox.activeInHierarchy && Input.GetKeyDown(KeyCode.E))
+        if (dialogueBox.activeInHierarchy && Input.GetKeyUp(KeyCode.E))
         {
             if (justStarted)
             {
@@ -51,13 +52,13 @@ public class DialogueManager : MonoBehaviour
         dialogueLines = newLines;
 
         currentLine = 0;
-
+        justStarted = true;
         CheckIfName();
 
         dialogueText.text = dialogueLines[currentLine];
         dialogueBox.SetActive (true);
 
-        justStarted = true;
+        
 
         nameBox.SetActive(isPerson);
 
@@ -96,14 +97,19 @@ public class DialogueManager : MonoBehaviour
     private void AdvanceDialogue()
     {
         currentLine++;
-        if (currentLine >= dialogueLines.Length)
-        {
-            EndDialogue();
-        }
-        else
+        //if (currentLine >= dialogueLines.Length)
+        //{
+        //    EndDialogue();
+        //}
+        //else
+        //{
+        //    DisplayNextLine();
+        //}
+        if (currentLine <  dialogueLines.Length )
         {
             DisplayNextLine();
-        }
+        }else
+            EndDialogue();
     }
 
     private void EndDialogue()
@@ -111,7 +117,7 @@ public class DialogueManager : MonoBehaviour
         dialogueBox.SetActive(false);
         GameManager.instance.dialogueActive = false;
         DeactivateUIInstructions();
-
+        dialogueLines = null;
         if (shouldMarkQuest)
         {
             shouldMarkQuest = false;
