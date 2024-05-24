@@ -3721,10 +3721,10 @@ MonoBehaviour:
   activeateOnStay: 0
   activateOnExit: 0
   timeBetweenBattles: 10
-  deactivateAfterStarting: 0
+  deactivateAfterStarting: 1
   cannotFlee: 1
-  shouldCompleteQuest: 0
-  questToComplete: Fight the Demon
+  shouldCompleteQuest: 1
+  questToComplete: Kill the Dragon
 --- !u!61 &312114357
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -56375,23 +56375,20 @@ MonoBehaviour:
   - enemies:
     - Skeleton
     - Spider
-    rewardXP: 750
+    rewardXP: 1000
     rewardItems:
     - Wooden Sword
     - Health Potion
   - enemies:
     - EyeBall
-    - Skeleton
-    - Spider
-    rewardXP: 1000
+    rewardXP: 500
     rewardItems:
-    - Leather Armor
     - Health Potion
     - Mana Potion
   activateOnEnter: 0
   activeateOnStay: 0
   activateOnExit: 0
-  timeBetweenBattles: 10
+  timeBetweenBattles: 5
   deactivateAfterStarting: 0
   cannotFlee: 0
   shouldCompleteQuest: 0

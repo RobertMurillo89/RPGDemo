@@ -16579,6 +16579,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7112064870264569657, guid: 642bfc065ccd06d49b8ed4dd0e5bca03, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7566618731677739833, guid: 642bfc065ccd06d49b8ed4dd0e5bca03, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 76
@@ -19558,7 +19562,7 @@ GameObject:
   - component: {fileID: 744410178}
   - component: {fileID: 744410177}
   m_Layer: 0
-  m_Name: NPC Characters_0
+  m_Name: Shop Keeper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19691,8 +19695,8 @@ MonoBehaviour:
   itemsForSale:
   - Health Potion
   - Mana Potion
-  - 
-  - 
+  - Wooden Sword
+  - Leather Armor
   - Iron Armor
   - Iron Sword
   - 

@@ -15,17 +15,9 @@ public class DialogueActivator : MonoBehaviour
     public string questToMark;
     public bool markComplete;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if(canActivate && Input.GetButtonDown("Fire1") && !DialogueManager.instance.dialogueBox.activeInHierarchy)
+        if(canActivate && Input.GetKeyDown(KeyCode.E) && !DialogueManager.instance.dialogueBox.activeInHierarchy)
         {
             DialogueManager.instance.ShowDialogue(lines, isPerson);
             DialogueManager.instance.ShouldActivateQuestAtEnd(questToMark, markComplete);
@@ -35,12 +27,18 @@ public class DialogueActivator : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
+        {
+            DialogueManager.instance.ActivateUIInstruction();
             canActivate = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Player")
+        {
+            DialogueManager.instance.DeactivateUIInstructions();
             canActivate = false;
+        }
     }
 }

@@ -8,6 +8,7 @@ public class QuestManager : MonoBehaviour
     public bool[] questMarkersComplete;
 
     public static QuestManager instance;
+    public bool questObjectAlreadyUsed = false;
 
     void Start()
     {
@@ -16,25 +17,24 @@ public class QuestManager : MonoBehaviour
         questMarkersComplete = new bool[questMarkerNames.Length];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Debug.Log(CheckIfComplete("Quest Test"));
-            MarkQuestComplete("Quest Test");
-            MarkQuestIncomplete("Fight the Demon");
-        }
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Q))
+    //    {
+    //        Debug.Log(CheckIfComplete("Quest Test"));
+    //        MarkQuestComplete("Quest Test");
+    //        MarkQuestIncomplete("Fight the Demon");
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            SaveQuestData();
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            LoadQuestData();
-        }
-    }
+    //    if (Input.GetKeyDown(KeyCode.O))
+    //    {
+    //        SaveQuestData();
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.P))
+    //    {
+    //        LoadQuestData();
+    //    }
+    //}
 
     public int GetQuestNumber(string questToFind)
     {
@@ -46,7 +46,7 @@ public class QuestManager : MonoBehaviour
             }
         }
 
-        Debug.LogError("Quest " + questToFind + " does not exist");
+        //Debug.LogError("Quest " + questToFind + " does not exist");
         return 0;
     }
 
@@ -76,13 +76,18 @@ public class QuestManager : MonoBehaviour
     public void UpdateLocalQuestObjects()
     {
         QuestObjectActivator[] questObjects = FindObjectsOfType<QuestObjectActivator>(); 
-        if (questObjects.Length > 0)
-        {
-            for (int i = 0; i < questObjects.Length; i++)
+       // if (!questObjectAlreadyUsed)
+        //{
+            if (questObjects.Length > 0)
             {
-                questObjects[i].CheckCompletion();
+                for (int i = 0; i < questObjects.Length; i++)
+                {
+                    questObjects[i].CheckCompletion();
+                    //questObjectAlreadyUsed = false;
+                }
             }
-        }
+       // }
+
     }
 
     //SAVE SYSTEM -- USING PLAYER PREF

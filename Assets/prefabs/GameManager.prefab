@@ -62,15 +62,6 @@ MonoBehaviour:
   - 
   - 
   - 
-  - Health Potion
-  - 
-  - 
-  - Iron Sword
-  - 
-  - 
-  - 
-  - 
-  - Wooden Sword
   - 
   - 
   - 
@@ -80,13 +71,22 @@ MonoBehaviour:
   - 
   - 
   - 
-  - Leather Armor
   - 
   - 
   - 
   - 
   - 
-  - Mana Potion
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -106,7 +106,7 @@ MonoBehaviour:
   - {fileID: 484377190357463471, guid: d52bb74c7cc72f64688c708f136172c7, type: 3}
   - {fileID: 2669476608752819578, guid: 2c6252790942c04439bb03b75a7ffc8c, type: 3}
   - {fileID: 6865555856271686489, guid: 48eef2aeafddef34e8eea1c09f964f1d, type: 3}
-  currentGold: 0
+  currentGold: 30
 --- !u!114 &3035987292674661426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,12 +121,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questMarkerNames:
   - 
-  - Fight the Demon
-  - Enter the Cave
-  - Quest Test
-  - Save the World
-  - Do Something
-  questMarkersComplete: 000000010000
+  - Talk to Girl
+  - Kill the Dragon
+  - Collect Reward
+  questMarkersComplete: 000000
+  questObjectAlreadyUsed: 0
 --- !u!1 &6629104950545447499
 GameObject:
   m_ObjectHideFlags: 0

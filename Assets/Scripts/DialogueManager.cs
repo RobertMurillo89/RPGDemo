@@ -22,49 +22,28 @@ public class DialogueManager : MonoBehaviour
 
     public static DialogueManager instance;
 
+    public GameObject UIInstruction;
+
     void Start()
     {
         instance = this;
-
-        //dialogueText.text = dialogueLines[currentLine];
     }
 
     void Update()
     {
-        if (dialogueBox.activeInHierarchy)
+
+        if (dialogueBox.activeInHierarchy && Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetButtonUp("Fire1"))
+            if (justStarted)
             {
-                if (!justStarted)
-                {
-                    currentLine++;
-                    if (currentLine >= dialogueLines.Length)
-                    {
-                        dialogueBox.SetActive(false);
-                        GameManager.instance.dialogueActive = false;
-
-                        if(shouldMarkQuest)
-                        {
-                            shouldMarkQuest = false;
-                            if(markQuestComplete)
-                            {
-                                QuestManager.instance.MarkQuestComplete(questToMark);
-                            }else
-                                QuestManager.instance.MarkQuestIncomplete(questToMark);
-
-                        }
-                    }
-                    else
-                    {
-                        CheckIfName();
-                        dialogueText.text = dialogueLines[currentLine];
-                    }
-                }
-                else
-                    justStarted = false;
-                
+                justStarted = false;
+            }
+            else
+            {
+                AdvanceDialogue();
             }
         }
+
     }
 
     public void ShowDialogue(string[] newLines, bool isPerson)
@@ -100,5 +79,56 @@ public class DialogueManager : MonoBehaviour
         markQuestComplete = markComplete;
 
         shouldMarkQuest = true;
+    }
+
+    public void ActivateUIInstruction()
+    {
+        UIInstruction.SetActive (true);
+
+    }
+
+    public void DeactivateUIInstructions()
+    {
+        UIInstruction.SetActive(false);
+
+    }
+
+    private void AdvanceDialogue()
+    {
+        currentLine++;
+        if (currentLine >= dialogueLines.Length)
+        {
+            EndDialogue();
+        }
+        else
+        {
+            DisplayNextLine();
+        }
+    }
+
+    private void EndDialogue()
+    {
+        dialogueBox.SetActive(false);
+        GameManager.instance.dialogueActive = false;
+        DeactivateUIInstructions();
+
+        if (shouldMarkQuest)
+        {
+            shouldMarkQuest = false;
+            if (markQuestComplete)
+            {
+                QuestManager.instance.MarkQuestComplete(questToMark);
+            }
+            else
+            {
+                QuestManager.instance.MarkQuestIncomplete(questToMark);
+            }
+        }
+    }
+
+    private void DisplayNextLine()
+    {
+        CheckIfName();
+        dialogueText.text = dialogueLines[currentLine];
     }
 }

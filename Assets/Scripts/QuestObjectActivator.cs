@@ -33,6 +33,7 @@ public class QuestObjectActivator : MonoBehaviour
     {
         if (QuestManager.instance.CheckIfComplete(questToCheck))
         {
+            //QuestManager.instance.questObjectAlreadyUsed = true;
             objectToActivate.SetActive(activeIfComplete);
 
         }
