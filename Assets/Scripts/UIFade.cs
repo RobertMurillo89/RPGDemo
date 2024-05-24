@@ -46,11 +46,13 @@ public class UIFade : MonoBehaviour
     {
         ShouldFadeToBlack = true;
         ShouldFadeFromBlack = false;
+        GameMenu.instance.ToggleUIInstructions();
     }
 
     public void FadeFromBlack()
     {
         ShouldFadeToBlack = false;
         ShouldFadeFromBlack = true;
+        GameMenu.instance.ToggleUIInstructions();
     }
 }
