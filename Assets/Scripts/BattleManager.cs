@@ -469,6 +469,7 @@ public class BattleManager : MonoBehaviour
     public void UseItem(int selectChar)
     {
         activeItem.Use(selectChar);
+
         UpdateUIStats();
         CloseItemCharChoice();
         CloseItemMenu();

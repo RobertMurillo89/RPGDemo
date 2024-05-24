@@ -35,62 +35,119 @@ public class Item : MonoBehaviour
 
     public void Use(int charToUseOn)
     {
-        //if (BattleManager.instance.battleScene.activeInHierarchy)
-        //{
-            //BattleChar selectedChar = BattleManager.instance.activeBattlers[charToUseOn];
-        //}
+
         CharStats selectedChar = GameManager.instance.playerStats[charToUseOn];
+        BattleChar selectedBattleChar = BattleManager.instance.activeBattlers[charToUseOn];
 
-        if (isItem)
+        if (BattleManager.instance.battleScene.activeInHierarchy)
         {
-            if(affectHP)
+            if (isItem)
             {
-                selectedChar.currentHp += amountToChange;
-                if (selectedChar.currentHp > selectedChar.maxHP)
+                if (affectHP)
                 {
-                    selectedChar.currentHp = selectedChar.maxHP;
+                    selectedBattleChar.currentHP += amountToChange;
+                    if (selectedBattleChar.currentHP > selectedBattleChar.maxHP)
+                    {
+                        selectedBattleChar.currentHP = selectedBattleChar.maxHP;
+                    }
+                }
+                if (affectMP)
+                {
+                    selectedBattleChar.currentMP += amountToChange;
+                    if (selectedBattleChar.currentMP > selectedBattleChar.maxMP)
+                    {
+                        selectedBattleChar.currentMP = selectedBattleChar.maxMP;
+                    }
+                }
+                if (affectStr)
+                {
+                    selectedBattleChar.strength += amountToChange;
+                }
+                if (affectDef)
+                {
+                    selectedBattleChar.defence += amountToChange;
                 }
             }
-            if(affectMP)
+
+            if (isWeapon)
             {
-                selectedChar.currentMP += amountToChange;
-                if (selectedChar.currentMP > selectedChar.maxMP)
+                if (selectedBattleChar.wpnPower != 0)
                 {
-                    selectedChar.currentMP = selectedChar.maxMP;
+                    GameManager.instance.AddItem(selectedChar.equippedWepn);
+                }
+                selectedChar.equippedWepn = itemName;
+                selectedChar.wpnPwr = weaponStrength;
+                selectedBattleChar.wpnPower = weaponStrength;
+            }
+
+            if (isArmor)
+            {
+                if (selectedBattleChar.armrPower != 0)
+                {
+                    GameManager.instance.AddItem(selectedChar.equippedArmr);
+                }
+
+                selectedChar.equippedArmr = itemName;
+                selectedChar.armrPwr = armorStrength;
+                selectedBattleChar.armrPower = armorStrength;
+            }
+
+            GameManager.instance.RemoveItem(itemName);
+        }
+        else if (!BattleManager.instance.battleScene.activeInHierarchy)
+        {
+            if (isItem)
+            {
+                if (affectHP)
+                {
+                    selectedChar.currentHp += amountToChange;
+                    if (selectedChar.currentHp > selectedChar.maxHP)
+                    {
+                        selectedChar.currentHp = selectedChar.maxHP;
+                    }
+                }
+                if (affectMP)
+                {
+                    selectedChar.currentMP += amountToChange;
+                    if (selectedChar.currentMP > selectedChar.maxMP)
+                    {
+                        selectedChar.currentMP = selectedChar.maxMP;
+                    }
+                }
+                if (affectStr)
+                {
+                    selectedChar.strength += amountToChange;
+                }
+                if (affectDef)
+                {
+                    selectedChar.defence += amountToChange;
                 }
             }
-            if (affectStr)
+
+            if (isWeapon)
             {
-                selectedChar.strength += amountToChange;
+                if (selectedChar.equippedWepn != "")
+                {
+                    GameManager.instance.AddItem(selectedChar.equippedWepn);
+                }
+
+                selectedChar.equippedWepn = itemName;
+                selectedChar.wpnPwr = weaponStrength;
             }
-            if (affectDef)
+
+            if (isArmor)
             {
-                selectedChar.defence += amountToChange;
+                if (selectedChar.equippedArmr != "")
+                {
+                    GameManager.instance.AddItem(selectedChar.equippedArmr);
+                }
+
+                selectedChar.equippedArmr = itemName;
+                selectedChar.armrPwr = armorStrength;
             }
+
+            GameManager.instance.RemoveItem(itemName);
         }
-
-        if(isWeapon)
-        {
-            if(selectedChar.equippedWepn != "")
-            {
-                GameManager.instance.AddItem(selectedChar.equippedWepn);
-            }
-
-            selectedChar.equippedWepn = itemName;
-            selectedChar.wpnPwr =weaponStrength;
-        }
-
-        if (isArmor)
-        {
-            if (selectedChar.equippedArmr != "")
-            {
-                GameManager.instance.AddItem(selectedChar.equippedArmr);
-            }
-
-            selectedChar.equippedArmr = itemName;
-            selectedChar.armrPwr = armorStrength;
-        }
-
-        GameManager.instance.RemoveItem(itemName);
+      
     }
 }
